@@ -26,3 +26,18 @@ def pregunta_04():
      ('12', 3)]
 
     """
+    datos = open("files/input/data.csv", "r").read().splitlines()
+
+    meses = {}
+
+    for lines in datos:
+        lines = lines.split("\t")
+        fecha = lines[2].split("-")
+        fecha = fecha[1]
+        if fecha in meses:
+            meses[fecha] += 1
+        else:
+            meses[fecha] = 1
+    lista = list(meses.items())
+    lista.sort()
+    return lista

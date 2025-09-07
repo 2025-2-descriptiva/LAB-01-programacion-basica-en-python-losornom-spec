@@ -16,3 +16,22 @@ def pregunta_11():
 
 
     """
+
+
+    datos = open("files/input/data.csv", "r").read().splitlines()
+
+    diccionario = {}
+
+    for lines in datos:
+        lines = lines.split("\t")
+        valor = int(lines[1])
+        columna4 = lines[3]
+        columna4 = columna4.split(",")
+
+        for elemento in columna4:
+            if elemento in diccionario:
+                diccionario[elemento] = diccionario[elemento] + valor
+            else:
+                diccionario[elemento] = valor
+    diccionario = dict(sorted(diccionario.items()))
+    return(diccionario)

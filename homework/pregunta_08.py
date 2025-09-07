@@ -27,3 +27,29 @@ def pregunta_08():
      (9, ['A', 'B', 'C', 'E'])]
 
     """
+
+    datos = open("files/input/data.csv", "r").read().splitlines()
+
+    diccionario = {}
+
+    for lineas in datos:
+        lineas = lineas.split()
+        clave = int(lineas[1])
+        letra = str(lineas[0])
+        if clave in diccionario.keys():
+                diccionario[clave].append(letra)
+        else:
+            diccionario[clave] = list(letra)
+    diccionario2 = {}
+    for clave, valor in diccionario.items():
+        newvalue = []
+        for i in valor:
+            if i not in newvalue:
+                newvalue.append(i)
+        newvalue.sort()
+        diccionario2[clave] = newvalue
+    lista = list(diccionario2.items())
+    lista.sort()
+    return lista
+
+print(pregunta_08())

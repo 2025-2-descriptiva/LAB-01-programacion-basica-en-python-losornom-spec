@@ -15,3 +15,19 @@ def pregunta_02():
     [('A', 8), ('B', 7), ('C', 5), ('D', 6), ('E', 14)]
 
     """
+    datos = open("files/input/data.csv", "r").read().splitlines()
+
+    diccionario = {}
+
+    for renglon in datos:
+        renglon = renglon.split("\t")
+
+        if renglon[0] in diccionario:
+            diccionario[renglon[0]] += 1
+        else: 
+            diccionario[renglon[0]] = 1
+
+    lista = list(diccionario.items())
+    lista.sort()
+    return lista
+

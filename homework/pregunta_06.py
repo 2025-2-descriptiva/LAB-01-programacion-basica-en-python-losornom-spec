@@ -26,3 +26,39 @@ def pregunta_06():
      ('jjj', 5, 17)]
 
     """
+    datos = open("files/input/data.csv", "r").read().splitlines()
+    diccionariomax = {}
+    diccionariomin = {}
+    for lines in datos:
+        lines = lines.split("\t")
+        columna = lines[4]
+        columna = columna.split(",")
+        for elemento in columna:
+            elemento = elemento.split(":")
+            unidad = int(elemento[1])
+            if elemento[0] in diccionariomax:
+                diccionariomax[elemento[0]] = max(diccionariomax[elemento[0]], unidad)
+            else:
+                diccionariomax[elemento[0]] = unidad
+            if elemento[0] in diccionariomin:
+                diccionariomin[elemento[0]] = min(diccionariomin[elemento[0]], unidad)
+            else:
+                diccionariomin[elemento[0]] = unidad
+    lista1 = list(diccionariomin.items())
+    lista1.sort()
+    lista2 = diccionariomax
+    tupla = []
+    for letra in lista1:
+        letra = list(letra)
+        letra.append(lista2[letra[0]])
+        tupla.append(tuple(letra))
+    return tupla
+
+
+
+
+
+
+
+
+
